@@ -1,0 +1,39 @@
+from rest_framework.generics
+
+	ListAPIView
+
+	RetrieveUpdateAPIView
+	--  verileri forma getirir.
+	    def perform_update(self, serializer):   --- güncellenirken müdahele edebiliriz.
+        		serializer.save(modified_by=self.request.user)
+
+	DestroyModelMixin
+	-- silme
+    		def delete(self,request,*args,**kwargs):
+        		return self.destroy(request,*args,**kwargs)
+
+	CreateAPIView
+	-- oluşturma
+	
+	ListCreateAPIView
+	-- hem listeleme hem oluşturma.
+
+	RetrieveUpdateDestroyAPIView
+	-- güncelleme ve silme
+
+url oluşturduk
+url = serializers.HyperlinkedIdentityField(        # url oluşturduk - detail url'ine yönlendirdik.
+        view_name='post:detail',  # namespace:name
+        lookup_field='slug'
+    )
+
+permissions  -- izinler
+
+Throttle -- kısıtlama için kullanılır.
+
+
+JWT üye girişi  --  token ile giriş
+
+
+from django.db.models.signals import post_save   # sinyaller     otomatik yapılmasını istediğimiz işlemler için.
+from django.dispatch import receiver # tetikleme kısmı
